@@ -2,11 +2,6 @@
   <v-container id="settings-account">
     <v-row>
       <v-col>
-        <h1 class="page-header">Accounting Settings</h1>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
         <v-card>
           <v-card-title>Trade Settings</v-card-title>
           <v-card-text>

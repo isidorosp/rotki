@@ -1,11 +1,6 @@
 <template>
   <v-container id="settings-general">
-    <v-row>
-      <v-col>
-        <h1>Settings</h1>
-      </v-col>
-    </v-row>
-    <v-row>
+    <v-row no-gutters>
       <v-col>
         <v-card>
           <v-card-title>General Settings</v-card-title>
