@@ -42,17 +42,60 @@ describe('Settings', () => {
   });
 
   describe('General Settings', () => {
-    it('change general settings', () => {
+    before(() => {
       pageGeneral.visit();
+    });
+
+    it('change precision & validate UI message', () => {
       pageGeneral.setFloatingPrecision(settings.floatingPrecision);
+      pageGeneral.confirmInlineSuccess(
+        '.settings-general__fields__floating-precision',
+        settings.floatingPrecision
+      );
+    });
+
+    it('change anonymized switch & validate UI message', () => {
       pageGeneral.changeAnonymizedLogs();
+    });
+
+    it('change anonymous statistics switch & validate UI message', () => {
       pageGeneral.changeAnonymousUsageStatistics();
-      pageGeneral.setHistoryDataStart(settings.historicDataStart);
+    });
+
+    it('change historical data start & validate UI message', () => {
+      pageGeneral.setHistoryDataStart();
+      pageGeneral.confirmInlineSuccess(
+        '.settings-general__fields__historic-data-start',
+        settings.historicDataStart
+      );
+    });
+
+    it('change main currency and validate UI message', () => {
       pageGeneral.selectCurrency(settings.currency);
+      pageGeneral.confirmInlineSuccess(
+        '.settings-general__fields__currency-selector',
+        settings.currency
+      );
+    });
+
+    it('change balance save frequency and validate UI message', () => {
       pageGeneral.setBalanceSaveFrequency(settings.balanceSaveFrequency);
+      pageGeneral.confirmInlineSuccess(
+        '.settings-general__fields__balance-save-frequency',
+        settings.balanceSaveFrequency
+      );
+    });
+
+    it('change date display format and validate UI message', () => {
       pageGeneral.setDateDisplayFormat(settings.dateDisplayFormat);
-      pageGeneral.saveSettings();
-      pageGeneral.confirmSuccess();
+      pageGeneral.confirmInlineSuccess(
+        '.settings-general__fields__date-display-format',
+        settings.dateDisplayFormat
+      );
+    });
+
+    it('change general settings', () => {
+      // pageGeneral.confirmSuccess();
     });
 
     it('verify changed settings', () => {
@@ -63,8 +106,10 @@ describe('Settings', () => {
 
     it('change rpc without success', () => {
       pageGeneral.setRpcEndpoint('http://localhost:9001');
-      pageGeneral.saveSettings();
-      pageGeneral.confirmFailure();
+      pageGeneral.confirmInlineFailure(
+        '.settings-general__fields__rpc-endpoint',
+        'http://localhost:9001'
+      );
     });
 
     it('verify changed settings', () => {
